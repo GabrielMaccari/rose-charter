@@ -218,6 +218,8 @@ class RoseCharterApp(QMainWindow):
                     else:
                         file = pandas.read_excel(path, engine=eng)
                     
+                    file.columns = file.columns.astype(str)
+                    
                     #Remove colunas e linhas em branco
                     remove_cols = [col for col in file.columns if 'Unnamed' in col]
                     file.drop(remove_cols, axis='columns', inplace=True)
