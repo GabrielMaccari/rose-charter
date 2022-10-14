@@ -341,12 +341,18 @@ class RoseCharterApp(QMainWindow):
                     labels = ['','','','']
             
             #Cria 16 divisões de 22.5 graus para os pontos cardeais, colaterais e subcolaterais
-            bin_edges = numpy.arange(angle_start, 361, angle_interval)
+            bin_edges = numpy.arange(angle_start, 361+(angle_interval/2), angle_interval)
             
             #Realiza a contagem de valores em cada uma das direções a partir das divisões criadas
             number_of_strikes, bin_edges = numpy.histogram(direcoes, bin_edges)
             #Soma a primeira e a última contagem (ambas são N)
             number_of_strikes[0] += number_of_strikes[-1]
+            
+            '''
+            lb = 'N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW'.split()
+            for l,n in zip(lb,number_of_strikes):
+                print(f'{l}\t{n}')
+            '''
             
             fig = plt.figure(figsize=(8,8), dpi=300)
     
@@ -354,11 +360,11 @@ class RoseCharterApp(QMainWindow):
     
             if self.mirror == True:
                 #Divide os dados em dois conjuntos (0-180 e 180-360), soma os dois e duplica
-                half = numpy.sum(numpy.split(number_of_strikes, 2), 0)
+                half = numpy.sum(numpy.split(number_of_strikes[:-1], 2), 0)
                 two_halves = numpy.concatenate([half, half])
                 ax.bar(numpy.deg2rad(numpy.arange(0, 360, angle_interval)), two_halves, width=numpy.deg2rad(bar_width), bottom=0.0, edgecolor='white', color=self.color)
             else:
-                ax.bar(numpy.deg2rad(numpy.arange(0, 360, angle_interval)), number_of_strikes, width=numpy.deg2rad(bar_width), bottom=0.0, edgecolor='white', color=self.color)
+                ax.bar(numpy.deg2rad(numpy.arange(0, 360, angle_interval)), number_of_strikes[:-1], width=numpy.deg2rad(bar_width), bottom=0.0, edgecolor='white', color=self.color)
                 
             ax.set_facecolor('white')
             ax.set_theta_zero_location('N')
