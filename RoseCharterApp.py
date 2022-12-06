@@ -9,6 +9,7 @@ from sys import argv as sys_argv
 from os import getcwd
 import pandas
 import numpy
+import matplotlib
 import matplotlib.pyplot as plt
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel,
                              QComboBox, QCheckBox, QLineEdit, QColorDialog,
@@ -17,6 +18,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel,
 from PyQt6.QtGui import QIcon, QFont
 from PlotWindow import PlotWindow
 
+matplotlib.use("svg")
 
 class RoseCharterApp(QMainWindow):
     def __init__(self):
