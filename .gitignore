@@ -174,3 +174,10 @@ cython_debug/
 .idea/rose-charter-rep.iml
 .idea/vcs.xml
 .idea/workspace.xml
+.idea/
+
+.plots/
+plots/
+.old/
+old/
+pyinstaller command.txt
