@@ -194,7 +194,7 @@ class MainWindow(QMainWindow):
 
         y += 30
         self.copyright_label = QLabel(
-            '© 2022 Gabriel Maccari <gabriel.maccari@hotmail.com>', self
+            '© 2023 Gabriel Maccari <gabriel.maccari@hotmail.com>', self
         )
         self.copyright_label.setGeometry(5, y, 320, 20)
         self.copyright_label.setFont(QFont('Sans Serif', 8))
